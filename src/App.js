@@ -3,6 +3,7 @@ import './App.css';
 import TimeDisplay from './components/TimeDisplay';
 import TypeSelect from './components/TypeSelect';
 import Controls from './components/Controls'
+import Task from './components/Task'
 
 class App extends Component {
 
@@ -35,15 +36,15 @@ class App extends Component {
       this.stopInterval();
       this.setState({ running: false });
     }
-    console.log(this.state.time)
-    this.stopInterval();
+    // console.log(this.state.time)
     this.setState(state => ({ time: state.time - 1 }))
   };
 
   startTimer = () => {
+    const interval = setInterval(this.tick, 1000)
     this.setState(state => ({
       running: true,
-      interval: setInterval(this.tick, 1000),
+      interval,
       time: state.time > 0 ? state.time : state.selectedType.time
     }));
   }
@@ -83,34 +84,31 @@ class App extends Component {
   // startTimer, pauseTimer, resetTimer
   // getStatus (finished, running, paused), getProgress (time elapsed/total time)
   // changeType (toggle bet. work and rests)
-
   render() {
 
-    const {time, selectedType} = this.state
-    const {types} = this.props
+    const { time, selectedType } = this.state
+    const { types } = this.props
 
     return (
       <div className="App">
-        <TimeDisplay 
+        <TimeDisplay
           time={time}
           status={this.getStatus()}
           progress={this.getProgress()}
         />
 
-        <Controls 
+        <Controls
           start={this.startTimer}
           reset={this.resetTimer}
           pause={this.pauseTimer}
           status={this.getStatus()}
         />
-        {/* <button onClick={this.startTimer}>Start Timer</button> */}
-
-
-        <TypeSelect 
+        <TypeSelect
           types={types}
           changeType={this.changeType}
           selected={selectedType}
         />
+        <Task />
       </div>
     );
   }
