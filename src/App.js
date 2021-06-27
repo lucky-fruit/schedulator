@@ -36,7 +36,6 @@ class App extends Component {
       this.stopInterval();
       this.setState({ running: false });
     }
-    // console.log(this.state.time)
     this.setState(state => ({ time: state.time - 1 }))
   };
 
@@ -84,6 +83,7 @@ class App extends Component {
   // startTimer, pauseTimer, resetTimer
   // getStatus (finished, running, paused), getProgress (time elapsed/total time)
   // changeType (toggle bet. work and rests)
+  
   render() {
 
     const { time, selectedType } = this.state
