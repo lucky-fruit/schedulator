@@ -5,14 +5,12 @@ function Task() {
     const [newTask, setNewTask] = useState("");
 
     const saveData = (newTasks) => {
-        // console.log(JSON.stringify(newTasks))
         localStorage.setItem("tasks", JSON.stringify(newTasks))
     }
 
     useEffect(() => {
         if (localStorage.getItem("tasks")) {
             setTasks(JSON.parse(localStorage.getItem("tasks")));
-            // console.log(JSON.parse(localStorage.getItem("tasks")))
         }
     }, []);
 
@@ -32,6 +30,8 @@ function Task() {
         saveData(newTasks);
     }
 
+    // onAddTask: checks if newTask has changed, adds a task to the tasks, sets NewTask back to empty, then saves data
+    // deleteTask: filters and only takes tasks without the id of the selected, which removes the task
     return (
         <div className='container-tasklist'>
             <input
@@ -44,7 +44,7 @@ function Task() {
             />
             <button onClick={onAddTask}>Add Task</button>
             <div>
-                <ul style={{ "list-style-type":"none" }}>
+                <ul style={{ "listStyleType":"none" }}>
                     {tasks.map((task) => (
                         <li key={task.id}>{task.task}
                             <button className='delete' onClick={() => deleteTask(task.id)}>Delete</button>

@@ -8,16 +8,16 @@ const Controls = ({ start, reset, pause, status }) => (
             </button>
         )}
 
-        {status === 'Finished' && (
+        {status === 'done' && (
             <button onClick={start} className="start">
                 Restart Timer
             </button>
         )}
 
-        {(status === 'Paused' || status === 'Running') && (
+        {(status === 'paused' || status === 'ongoing') && (
             <div>
-                <button onClick={pause} className={status === 'Paused' ? 'resume' : 'pause'}>
-                    {status === 'Paused' ? 'Resume' : 'Pause'}
+                <button onClick={pause} className={status === 'paused' ? 'resume' : 'pause'}>
+                    {status === 'paused' ? 'Resume' : 'Pause'}
                 </button>
                 <button onClick={reset} className='reset'>
                     Reset

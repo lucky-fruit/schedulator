@@ -19,9 +19,9 @@ class App extends Component {
 
   static defaultProps = {
     types: [
-      { name: 'Work Time', time: 1500 },
-      { name: 'Short Rest', time: 300 },
-      { name: 'Long Rest', time: 900 }
+      { name: 'Work', time: 1500 },
+      { name: 'Short rest', time: 300 },
+      { name: 'Long rest', time: 900 }
     ]
   };
 
@@ -30,14 +30,6 @@ class App extends Component {
     clearInterval(this.state.interval);
     this.setState({ interval: null })
   }
-
-  tick = () => {
-    if (this.state.time <= 1) {
-      this.stopInterval();
-      this.setState({ running: false });
-    }
-    this.setState(state => ({ time: state.time - 1 }))
-  };
 
   startTimer = () => {
     const interval = setInterval(this.tick, 1000)
@@ -62,15 +54,9 @@ class App extends Component {
 
   getStatus = () => {
     const { time, running, interval } = this.state;
-    if (time === 0) return 'Finished';
-    if (running && !interval) return 'Paused';
-    if (running) return 'Running';
-  }
-
-  getProgress = () => {
-    const current = this.state.time;
-    const total = this.state.selectedType.time;
-    return ((total - current) / total * 100);
+    if (time === 0) return 'done';
+    if (running && !interval) return 'paused';
+    if (running) return 'ongoing';
   }
 
   changeType = type => {
@@ -78,12 +64,20 @@ class App extends Component {
     this.setState({ selectedType: type, time: type.time, running: false });
   };
 
+  tick = () => {
+    if (this.state.time <= 1) {
+      this.stopInterval();
+      this.setState({ running: false });
+    }
+    this.setState(state => ({ time: state.time - 1 }))
+  };
+
+
 
   // tick (running the clock), stopInterval (clearing interval)
   // startTimer, pauseTimer, resetTimer
-  // getStatus (finished, running, paused), getProgress (time elapsed/total time)
-  // changeType (toggle bet. work and rests)
-  
+  // getStatus (finished, running, paused), changeType (toggle bet. work and rests)
+
   render() {
 
     const { time, selectedType } = this.state
@@ -91,10 +85,12 @@ class App extends Component {
 
     return (
       <div className="App">
+
+        <h1>Timer</h1>
         <TimeDisplay
           time={time}
           status={this.getStatus()}
-          progress={this.getProgress()}
+          selected={selectedType}
         />
 
         <Controls
@@ -108,6 +104,8 @@ class App extends Component {
           changeType={this.changeType}
           selected={selectedType}
         />
+
+        <h1>Tasklist</h1>
         <Task />
       </div>
     );
