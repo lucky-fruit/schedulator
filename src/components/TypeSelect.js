@@ -1,14 +1,14 @@
 import React from 'react'
-import './TypeSelect.css'
-import {Button} from 'react-bootstrap'
+import { Button } from '@material-ui/core';
 
 const TypeSelect = ({ types, changeType, selected }) => (
     <div className="type-select">
         {types.map((type, index) => (
-            <Button
+            <Button variant="outlined"
                 key={type.name}
                 onClick={() => changeType(type)}
                 className={type.name === selected.name ? 'active' : ''}
+                color={type.name === selected.name ? 'secondary' : 'primary'}
             >
                 {type.name}
             </Button>

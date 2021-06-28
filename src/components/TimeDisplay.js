@@ -1,5 +1,4 @@
 import React from 'react'
-import {Card} from 'react-bootstrap'
 
 const TimeDisplay = ({time, status, selected}) => {
     function formatTime(time){
@@ -13,18 +12,16 @@ const TimeDisplay = ({time, status, selected}) => {
 
     function formatDisplay(name, status){
         if(status){
-            return `${name} is ${status}`
+            return `${name} IS ${status}`
         } else{
-            return ''
+            return (name === 'WORK' ? `TIME FOR WORK` : `TIME FOR A BREAK`)
         }
     }
 
     return(
         <div className="time-display">
-            <Card>
-                <Card.Title>{formatTime(time)}</Card.Title>
-                <Card.Text>{formatDisplay(selected.name, status)}</Card.Text>
-            </Card>
+            <p>{formatDisplay(selected.name, status)}</p>
+            <h1>{formatTime(time)}</h1>
         </div>
     );
 }

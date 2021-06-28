@@ -4,8 +4,9 @@ import TimeDisplay from './components/TimeDisplay';
 import TypeSelect from './components/TypeSelect';
 import Controls from './components/Controls'
 import Task from './components/Task'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Col, Row } from 'react-bootstrap'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+import Container from '@material-ui/core/Container'
+
 
 class App extends Component {
 
@@ -21,9 +22,9 @@ class App extends Component {
 
   static defaultProps = {
     types: [
-      { name: 'Work', time: 1500 },
-      { name: 'Short rest', time: 300 },
-      { name: 'Long rest', time: 900 }
+      { name: 'WORK', time: 1500 },
+      { name: 'SHORT REST', time: 300 },
+      { name: 'LONG REST', time: 900 }
     ]
   };
 
@@ -56,9 +57,9 @@ class App extends Component {
 
   getStatus = () => {
     const { time, running, interval } = this.state;
-    if (time === 0) return 'done';
-    if (running && !interval) return 'paused';
-    if (running) return 'ongoing';
+    if (time === 0) return 'DONE';
+    if (running && !interval) return 'PAUSED';
+    if (running) return 'ONGOING';
   }
 
   changeType = type => {
@@ -86,36 +87,37 @@ class App extends Component {
     const { types } = this.props
 
     return (
-      <div className="App">
-        <Container className="container p-3 my-3 bg-primary text-black">
-          <Row>
-          <Col>
-            <h1>Timer</h1>
-            <TimeDisplay
-              time={time}
-              status={this.getStatus()}
-              selected={selectedType}
-            />
+      <Container maxWidth='lg'>
+        <div className="app-container" >
 
-            <Controls
-              start={this.startTimer}
-              reset={this.resetTimer}
-              pause={this.pauseTimer}
-              status={this.getStatus()}
-            />
-            <TypeSelect
-              types={types}
-              changeType={this.changeType}
-              selected={selectedType}
-            />
-          </Col>
-          <Col>
-            <h1>Tasklist</h1>
-            <Task />
-          </Col>
-          </Row>
-        </Container>
-      </div>
+          <h1>TIMER</h1>
+
+
+          <TypeSelect
+            types={types}
+            changeType={this.changeType}
+            selected={selectedType}
+          />
+
+
+          <TimeDisplay
+            time={time}
+            status={this.getStatus()}
+            selected={selectedType}
+          />
+
+
+          <Controls
+            start={this.startTimer}
+            reset={this.resetTimer}
+            pause={this.pauseTimer}
+            status={this.getStatus()}
+          />
+
+          <h1>TASKLIST</h1>
+          <Task />
+        </div>
+      </Container>
     );
   }
 }
