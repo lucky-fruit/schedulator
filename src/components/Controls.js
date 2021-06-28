@@ -1,27 +1,28 @@
 import React from 'react'
+import {Button} from 'react-bootstrap'
 
 const Controls = ({ start, reset, pause, status }) => (
     <div className="controls">
         {!status && (
-            <button onClick={start} className="start">
+            <Button onClick={start} className="start">
                 Start Timer
-            </button>
+            </Button>
         )}
 
         {status === 'done' && (
-            <button onClick={start} className="start">
+            <Button onClick={start} className="start">
                 Restart Timer
-            </button>
+            </Button>
         )}
 
         {(status === 'paused' || status === 'ongoing') && (
             <div>
-                <button onClick={pause} className={status === 'paused' ? 'resume' : 'pause'}>
+                <Button onClick={pause} className={status === 'paused' ? 'resume' : 'pause'}>
                     {status === 'paused' ? 'Resume' : 'Pause'}
-                </button>
-                <button onClick={reset} className='reset'>
+                </Button>
+                <Button onClick={reset} className='reset'>
                     Reset
-                </button>
+                </Button>
             </div>
         )}
 

@@ -3,12 +3,14 @@
     "name": "Timer and Tasklist PWA",
     "icons": [
         {
-            "src": "/images/logo.png",
+            "src": "/images/maskable_icon_x192.png",
             "type": "image/png",
-            "size": "1024x1024"
+            "size": "192x192",
+            "purpose": "any maskable"
         }
     ],
-    "start_url": ".",
+    "scope": "/",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#000000",
     "background_color": "#ffffff"

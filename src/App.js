@@ -4,6 +4,8 @@ import TimeDisplay from './components/TimeDisplay';
 import TypeSelect from './components/TypeSelect';
 import Controls from './components/Controls'
 import Task from './components/Task'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Col, Row } from 'react-bootstrap'
 
 class App extends Component {
 
@@ -85,28 +87,34 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Container className="container p-3 my-3 bg-primary text-black">
+          <Row>
+          <Col>
+            <h1>Timer</h1>
+            <TimeDisplay
+              time={time}
+              status={this.getStatus()}
+              selected={selectedType}
+            />
 
-        <h1>Timer</h1>
-        <TimeDisplay
-          time={time}
-          status={this.getStatus()}
-          selected={selectedType}
-        />
-
-        <Controls
-          start={this.startTimer}
-          reset={this.resetTimer}
-          pause={this.pauseTimer}
-          status={this.getStatus()}
-        />
-        <TypeSelect
-          types={types}
-          changeType={this.changeType}
-          selected={selectedType}
-        />
-
-        <h1>Tasklist</h1>
-        <Task />
+            <Controls
+              start={this.startTimer}
+              reset={this.resetTimer}
+              pause={this.pauseTimer}
+              status={this.getStatus()}
+            />
+            <TypeSelect
+              types={types}
+              changeType={this.changeType}
+              selected={selectedType}
+            />
+          </Col>
+          <Col>
+            <h1>Tasklist</h1>
+            <Task />
+          </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
