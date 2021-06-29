@@ -12,6 +12,20 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          background: 'linear-gradient(45deg, #66cccc 30%, #ff8e53 60%)',
+           backgroundRepeat: "no-repeat",
+           backgroundAttachment: "fixed",
+        },
+      },
+    },
+  },
+  typography :{
+    fontFamily: "Roboto Mono, Montserrat, Roboto",
+  },
   palette: {
     primary: {
       main: "#66cc99"
@@ -19,15 +33,14 @@ const theme = createMuiTheme({
     secondary: {
       main: "#cc6666"
     },
-    background: {
-      default: "#66cccc"
-    },
     text: {
       primary: "#eff9f9",
-      secondary: "#cecbcb"
+      secondary: "#cecbcb",
     },
   }
 });
+
+
 
 class App extends Component {
 

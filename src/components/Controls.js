@@ -10,14 +10,14 @@ const Controls = ({ start, reset, pause, status }) => (
     <div className="controls">
 
         {!status && (
-            <Button onClick={start} className="start" variant="text">
+            <Button onClick={start} className="start" variant="text" size="large">
                 <PlayCircleFilledOutlinedIcon />
             </Button>
         )}
 
 
         {status === 'DONE' && (
-            <Button onClick={start} className="start" variant="text">
+            <Button onClick={start} className="start" variant="text" size="large">
                 <ReplayOutlinedIcon />
             </Button>
         )}
@@ -26,10 +26,10 @@ const Controls = ({ start, reset, pause, status }) => (
             <Grid item>
                 {(status === 'PAUSED' || status === 'ONGOING') && (
                     <div>
-                        <Button onClick={pause} className={status === 'PAUSED' ? 'resume' : 'pause'} variant="text">
+                        <Button onClick={pause} className={status === 'PAUSED' ? 'resume' : 'pause'} variant="text" size="large">
                             {(status === 'paused') ? <PlayCircleFilledOutlinedIcon /> : <PauseCircleFilledOutlinedIcon />}
                         </Button>
-                        <Button onClick={reset} className='reset' variant="text">
+                        <Button onClick={reset} className='reset' variant="text" size="large">
                             <ReplayOutlinedIcon />
                         </Button>
                     </div>

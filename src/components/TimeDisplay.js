@@ -1,5 +1,4 @@
 import React from 'react'
-import './TimeDisplay.css';
 import Grid from '@material-ui/core/Grid';
 
 const TimeDisplay = ({ time, status, selected }) => {
@@ -16,7 +15,7 @@ const TimeDisplay = ({ time, status, selected }) => {
         if (status) {
             return `${name} IS ${status}`
         } else {
-            return (name === 'WORK' ? `Time for work!` : `Time for a break!`)
+            return (name === 'WORK' ? `TIME FOR WORK!` : `TIME FOR A BREAK`)
         }
     }
 
@@ -24,9 +23,9 @@ const TimeDisplay = ({ time, status, selected }) => {
         <div className="time-display">
             <Grid container direction="column-reverse" alignItems="center">
                 <Grid item>
-                    <p id="display">{formatDisplay(selected.name, status)}</p>
+                    <h5>{formatDisplay(selected.name, status)}</h5>
                 </Grid><Grid item>
-                    <p id="timer">{formatTime(time)}</p>
+                    <h1>{formatTime(time)}</h1>
                 </Grid>
             </Grid>
         </div>
