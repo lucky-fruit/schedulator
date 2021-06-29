@@ -4,7 +4,8 @@ import { Button } from '@material-ui/core';
 const TypeSelect = ({ types, changeType, selected }) => (
     <div className="type-select">
         {types.map((type, index) => (
-            <Button variant="outlined"
+            <Button variant="contained"
+                size = "large"
                 key={type.name}
                 onClick={() => changeType(type)}
                 className={type.name === selected.name ? 'active' : ''}

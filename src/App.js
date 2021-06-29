@@ -4,7 +4,7 @@ import TimeDisplay from './components/TimeDisplay';
 import TypeSelect from './components/TypeSelect';
 import Controls from './components/Controls'
 import Task from './components/Task'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Container from '@material-ui/core/Container'
 
 
@@ -114,7 +114,7 @@ class App extends Component {
             status={this.getStatus()}
           />
 
-          <h1>TASKLIST</h1>
+          <p id="tasklist">TASKLIST</p>
           <Task />
         </div>
       </Container>

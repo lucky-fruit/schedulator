@@ -1,10 +1,10 @@
 .app-container{
-  background-color: #36385E;
+  background-color: #E6EADE;
   text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #E6EADE;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,5 +14,8 @@
   color: white;
 }
 
-
+#tasklist{
+  margin-top: 40px;
+  font-size:200%;
+}
 

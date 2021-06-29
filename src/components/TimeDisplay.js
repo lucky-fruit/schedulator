@@ -1,4 +1,5 @@
 import React from 'react'
+import './TimeDisplay.css';
 
 const TimeDisplay = ({time, status, selected}) => {
     function formatTime(time){
@@ -14,14 +15,14 @@ const TimeDisplay = ({time, status, selected}) => {
         if(status){
             return `${name} IS ${status}`
         } else{
-            return (name === 'WORK' ? `TIME FOR WORK` : `TIME FOR A BREAK`)
+            return (name === 'WORK' ? `Time for work!` : `Time for a break!`)
         }
     }
 
     return(
         <div className="time-display">
             <p>{formatDisplay(selected.name, status)}</p>
-            <h1>{formatTime(time)}</h1>
+            <p id="timer">{formatTime(time)}</p>
         </div>
     );
 }

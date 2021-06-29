@@ -2,9 +2,23 @@ import React, { useState, useEffect } from 'react'
 import { Button, Input } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
-
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: '25ch',
+    },
+  }));
+  
 function Task() {
+    const classes = useStyles();
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
 
@@ -43,12 +57,11 @@ function Task() {
     return (
         <div className='container-tasklist'>
 
-
             <Input
                 type="text"
                 id="taskInput"
-                className="form-control"
-                placeholder="ADD A TASK HERE"
+                className={classes.textField}
+                placeholder="Add a task here"
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
                 variant="contained"
@@ -68,7 +81,6 @@ function Task() {
                             {task.task}
                             <Button className='delete' onClick={() => deleteTask(task.id)} 
                             startIcon={<DeleteOutlined />}>
-                                DELETE
                             </Button>
                         </li>
                     ))}
