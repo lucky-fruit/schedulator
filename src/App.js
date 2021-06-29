@@ -5,8 +5,29 @@ import TypeSelect from './components/TypeSelect';
 import Controls from './components/Controls'
 import Task from './components/Task'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
+import CssBaseline from '@material-ui/core/CssBaseline';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#66cc99"
+    },
+    secondary: {
+      main: "#cc6666"
+    },
+    background: {
+      default: "#66cccc"
+    },
+    text: {
+      primary: "#eff9f9",
+      secondary: "#cecbcb"
+    },
+  }
+});
 
 class App extends Component {
 
@@ -87,37 +108,66 @@ class App extends Component {
     const { types } = this.props
 
     return (
-      <Container maxWidth='lg'>
-        <div className="app-container" >
 
-          <h1>TIMER</h1>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <div className="app-container">
+          <Container maxWidth="lg">
+
+            <Box paddingTop={10}>
+
+              <Grid container justify="space-evenly" alignItems="stretch" direction="row" >
+
+                <Grid container item xs={6} sm={3} direction="column" spacing={2} alignItems="center" alignContent="center">
+                  <Grid item>
+                    <h1>TASKLIST</h1>
+                  </Grid>
+                  <Grid item>
+                    <Task />
+                  </Grid>
+                </Grid>
 
 
-          <TypeSelect
-            types={types}
-            changeType={this.changeType}
-            selected={selectedType}
-          />
+                <Grid container item xs={8} sm={5} direction="column" spacing={4} alignItems="center" alignContent="center">
+                  <Grid item >
+                    <h1>TIMER</h1>
+                  </Grid>
+                  <Grid item>
 
+                    <TypeSelect
+                      types={types}
+                      changeType={this.changeType}
+                      selected={selectedType}
+                    />
+                  </Grid>
+                  <Grid item>
 
-          <TimeDisplay
-            time={time}
-            status={this.getStatus()}
-            selected={selectedType}
-          />
+                    <TimeDisplay
+                      time={time}
+                      status={this.getStatus()}
+                      selected={selectedType}
+                    />
 
+                  </Grid>
+                  <Grid item>
+                    <Controls
+                      start={this.startTimer}
+                      reset={this.resetTimer}
+                      pause={this.pauseTimer}
+                      status={this.getStatus()}
+                    />
+                  </Grid>
 
-          <Controls
-            start={this.startTimer}
-            reset={this.resetTimer}
-            pause={this.pauseTimer}
-            status={this.getStatus()}
-          />
+                </Grid>
 
-          <p id="tasklist">TASKLIST</p>
-          <Task />
+              </Grid>
+            </Box>
+          </Container>
+
         </div>
-      </Container>
+
+      </MuiThemeProvider>
     );
   }
 }

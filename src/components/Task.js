@@ -3,20 +3,22 @@ import { Button, Input } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: '25ch',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: '25ch',
     },
-  }));
-  
+}));
+
 function Task() {
     const classes = useStyles();
     const [tasks, setTasks] = useState([]);
@@ -50,43 +52,59 @@ function Task() {
         saveData(newTasks);
     }
 
-    
+
 
     // onAddTask: checks if newTask has changed, adds a task to the tasks, sets NewTask back to empty, then saves data
     // deleteTask: filters and only takes tasks without the id of the selected, which removes the task
     return (
         <div className='container-tasklist'>
 
-            <Input
-                type="text"
-                id="taskInput"
-                className={classes.textField}
-                placeholder="Add a task here"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
-                variant="contained"
-                size="normal"
-                color="secondary"
-            />
+            <Grid container spacing={10} direction="row">
+                <Grid item xs={2} sm={1}>
+                    <Button onClick={onAddTask} startIcon={<AddCircleOutlineOutlinedIcon />}>
+                        ADD
+                    </Button>
+                </Grid>
+                <Grid item xs={16} sm={8}>
+                    <Input
+                        type="text"
+                        id="taskInput"
+                        className={classes.textField}
+                        placeholder="Add a task here"
+                        value={newTask}
+                        onChange={(e) => setNewTask(e.target.value)}
+                        variant="contained"
+                        size="normal"
+                        color="secondary"
+                    />
+                </Grid>
 
-            <Button onClick={onAddTask} startIcon={<AddCircleOutlineOutlinedIcon />}>
-                ADD
-            </Button>
+            </Grid>
 
-            <div>
-                <ul>
+
+            <Box paddingTop={3}>
+                <Grid container direction="column" justify="center" alignItems="stretch">
                     {tasks.map((task) => (
-                        <li style={{listStyleType: 'none'}} key={task.id}>
-                            
-                            {task.task}
-                            <Button className='delete' onClick={() => deleteTask(task.id)} 
-                            startIcon={<DeleteOutlined />}>
-                            </Button>
-                        </li>
-                    ))}
-                </ul>
+                        <p style={{ listStyleType: 'none' }} key={task.id}>
+                            <Grid container item direction="row" justify="space-evenly" alignItems="center">
+                                <Grid item xs={2}>
+                                    <Button size="small"
+                                        className='delete'
+                                        onClick={() => deleteTask(task.id)}
+                                        endIcon={<DeleteOutlined />}
+                                        color="secondary"
+                                    />
+                                </Grid>
+                                <Grid item xs={8} alignContent="center">
+                                    {task.task}
+                                </Grid>
 
-            </div>
+                            </Grid>
+                        </p>
+                    ))}
+                </Grid>
+            </Box>
+
         </div>
     )
 
