@@ -6,7 +6,7 @@ const TypeSelect = ({ types, changeType, selected }) => (
     <div className="type-select">
         <Grid container spacing={5} direction="row"> 
         {types.map((type, index) => (
-            <Grid item>
+            <Grid item key={type.name}>
             <Button variant="contained"
                 size = "small"
                 key={type.name}

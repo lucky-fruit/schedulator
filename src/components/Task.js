@@ -67,7 +67,7 @@ function Task() {
                         ADD
                     </Button>
                 </Grid>
-                <Grid item xs={16} sm={8}>
+                <Grid item xs={12} sm={6}>
                     <Input
                         type="text"
                         id="taskInput"

@@ -3,10 +3,35 @@
     "name": "Timer and Tasklist PWA",
     "icons": [
         {
-            "src": "/images/maskable_icon_x192.png",
+            "src": "maskable.png",
+            "size": "374x374",
             "type": "image/png",
-            "size": "192x192",
             "purpose": "any maskable"
+        },
+        {
+            "src": "favicon.ico",
+            "size": "16x16 32x32",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "logo192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "logo256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "logo384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "logo512.png",
+            "type": "image/png",
+            "sizes": "512x512"
         }
     ],
     "scope": "/",
